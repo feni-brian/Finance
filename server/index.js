@@ -33,17 +33,15 @@ app.use("/product", productRoutes);
 app.use("/transaction", transactionRoutes);
 
 /* MONGOOSE SETUP */
-const PORT = process.env.PORT || 9000;
+const port = process.env.PORT || 9000;
 const uri = process.env.MONGODB_URL || "mongodb://localhost:27017/test";
-
-mongoose.Promise = global.Promise;
 mongoose
 	.connect(uri, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
 	.then(async () => {
-		app.listen(PORT, () => console.log(`Listening on server port: ${PORT}`));
+		app.listen(port, () => console.log(`Listening on server port: ${port}`));
 		/* ADD DATA ONE TIME ONLY OR AS NEEDED */
 		// await mongoose.connection.db.dropDatabase();
 		// KPI.insertMany(kpis);
